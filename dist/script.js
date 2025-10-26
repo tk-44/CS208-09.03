@@ -36,6 +36,37 @@ async function getRandomJoke() {
     });
 }
 
+function isStrongPassword(password) {
+    if (password.length < 8) {
+        return false;
+    }
+    if (password.toLowerCase().includes("password")) {
+        return false;
+    }
+    let hasUpper = false;
+    for (let i = 0; i < password.length; i++) {
+        const char = password[i];
+        if (char >= 'A' && char <= 'Z') {
+            hasUpper = true;
+            break;
+        }
+    }
+    if (!hasUpper) {
+        return false;
+    }
+
+    return true;
+    
+}
+function checkPassword() {
+    const password = document.getElementById("passwordInput").value;
+    if (isStrongPassword(password)) {
+        alert("Password is strong");
+    } else {
+        alert("Password is weak");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const jokeButton = document.getElementById("joke-button");
     if (!jokeButton) {
